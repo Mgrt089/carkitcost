@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" role="img" aria-labelledby="title desc">
+  <title id="title">CarKitCost logo</title>
+  <desc id="desc">A forest green rounded-square road mark followed by the CarKitCost wordmark.</desc>
+  <rect x="4" y="8" width="64" height="64" rx="16" fill="#173f35"/>
+  <path d="M23 22h10l-4 36H19z" fill="#e96a3a"/>
+  <path d="M40 22h11l-4 36H36z" fill="#f7f3ea"/>
+  <text x="84" y="53" fill="#26312e" font-family="Manrope, Arial, sans-serif" font-size="32" font-weight="800" letter-spacing="-1">CARKITCOST</text>
+</svg>
