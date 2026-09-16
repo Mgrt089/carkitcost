@@ -1,3 +1,9 @@
+const diagnosisStyles = document.createElement('link');
+diagnosisStyles.rel = 'stylesheet';
+diagnosisStyles.href = 'diagnosis-polish.css';
+document.head.appendChild(diagnosisStyles);
+document.querySelector('.diagnosis b').textContent = 'WHY THIS FITS';
+
 const AFFILIATE_TAG = 'carkitcost-20';
 const icon = paths => `<svg viewBox="0 0 24 24" aria-hidden="true">${paths}</svg>`;
 const icons = {
