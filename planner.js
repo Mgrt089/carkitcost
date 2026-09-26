@@ -119,9 +119,8 @@ const groups = {
   weather:[item('Climate','All-weather cargo liner','all weather car cargo liner','essential','Contains water, mud and weather-exposed gear.')]
 };
 
-const state = {trip:'camping',focus:'established',vehicle:'suv',budget:'balanced',climate:'warm',days:5,kids:true,pets:false,overnight:false,cat:'All',view:'all',owned:new Set()};
+const state = {trip:'camping',focus:'established',vehicle:'suv',climate:'warm',days:5,kids:true,pets:false,overnight:false,cat:'All',view:'all',owned:new Set()};
 const $ = id => document.getElementById(id);
-const tierWord = {budget:'budget',balanced:'',premium:'premium'};
 const amazon = q => `https://www.amazon.com/s?k=${encodeURIComponent(q)}&tag=${AFFILIATE_TAG}`;
 const add = (target, group) => { if (groups[group]) target.push(...groups[group]); };
 
@@ -199,14 +198,13 @@ function render(){
   $('diagnosis').textContent=diagnosis();
   $('tabs').innerHTML=cats.map(cat=>`<button class="tab ${state.cat===cat?'active':''}" data-cat="${cat}">${cat}</button>`).join('');
   document.querySelectorAll('[data-cat]').forEach(button=>button.onclick=()=>{state.cat=button.dataset.cat;render();});
-  $('list').innerHTML=visible.length?visible.map(x=>`<article class="item ${state.owned.has(x.id)?'owned':''}" data-category="${x.cat}"><button class="own ${state.owned.has(x.id)?'owned':''}" data-own="${x.id}" aria-label="Mark ${x.name} as owned" aria-pressed="${state.owned.has(x.id)}"></button><span class="item-icon">${catIcon[x.cat]||icons.custom}</span><div class="item-copy"><div class="item-top"><span class="item-name">${x.name}</span><span class="priority ${x.p}">${x.p==='upgrade'?'Useful upgrade':x.p}</span></div><div class="why"><b>Why it fits:</b> ${x.why}</div></div><div class="actions"><a class="shop" href="${amazon(`${x.q} ${state.vehicle} ${tierWord[state.budget]}`.trim())}" target="_blank" rel="nofollow sponsored noopener" aria-label="View ${x.name} on Amazon">View on Amazon <span aria-hidden="true">↗</span></a></div></article>`).join(''):'<div class="empty">Everything here is already covered. You’re road-ready.</div>';
+  $('list').innerHTML=visible.length?visible.map(x=>`<article class="item ${state.owned.has(x.id)?'owned':''}" data-category="${x.cat}"><button class="own ${state.owned.has(x.id)?'owned':''}" data-own="${x.id}" aria-label="Mark ${x.name} as owned" aria-pressed="${state.owned.has(x.id)}"></button><span class="item-icon">${catIcon[x.cat]||icons.custom}</span><div class="item-copy"><div class="item-top"><span class="item-name">${x.name}</span><span class="priority ${x.p}">${x.p==='upgrade'?'Useful upgrade':x.p}</span></div><div class="why"><b>Why it fits:</b> ${x.why}</div></div><div class="actions"><a class="shop" href="${amazon(`${x.q} ${state.vehicle}`)}" target="_blank" rel="nofollow sponsored noopener" aria-label="View ${x.name} on Amazon">View on Amazon <span aria-hidden="true">↗</span></a></div></article>`).join(''):'<div class="empty">Everything here is already covered. You’re road-ready.</div>';
   document.querySelectorAll('[data-own]').forEach(button=>button.onclick=()=>{state.owned.has(button.dataset.own)?state.owned.delete(button.dataset.own):state.owned.add(button.dataset.own);render();});
   document.querySelectorAll('[data-view]').forEach(button=>button.classList.toggle('active',button.dataset.view===state.view));
   document.querySelectorAll('[data-toggle]').forEach(button=>{const on=state[button.dataset.toggle];button.classList.toggle('on',on);button.setAttribute('aria-pressed',on);});
 }
 
 $('vehicle').onchange=e=>{state.vehicle=e.target.value;render();};
-$('budget').onchange=e=>{state.budget=e.target.value;render();};
 $('climate').onchange=e=>{state.climate=e.target.value;render();};
 $('focus').onchange=e=>{state.focus=e.target.value;render();};
 $('minus').onclick=()=>{state.days=Math.max(1,state.days-1);render();};
@@ -220,9 +218,9 @@ function loadSaved(){try{return JSON.parse(localStorage.getItem('carkitcost_trip
 function renderSaved(){
   const saved=loadSaved();
   $('savedTrips').innerHTML=saved.length?saved.map((s,i)=>`<span style="display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.24);border-radius:99px;padding:6px 6px 6px 12px;font-size:11px;color:#26312e"><button data-load="${i}" style="background:none;border:0;color:#173f35;font:700 11px 'DM Sans';cursor:pointer;padding:0">${s.label}</button><button data-del="${i}" aria-label="Delete" style="background:none;border:0;color:#68736e;cursor:pointer;padding:0 4px">×</button></span>`).join(''):'<span style="font-size:11px;color:#68736e">No saved trips yet.</span>';
-  document.querySelectorAll('[data-load]').forEach(button=>button.onclick=()=>{const s=loadSaved()[+button.dataset.load];Object.assign(state,{trip:s.trip,focus:s.focus||Object.keys(trips[s.trip].focuses)[0],vehicle:s.vehicle,budget:s.budget,climate:s.climate,days:s.days,kids:s.kids,pets:s.pets,overnight:s.overnight});$('vehicle').value=state.vehicle;$('budget').value=state.budget;$('climate').value=state.climate;render();});
+  document.querySelectorAll('[data-load]').forEach(button=>button.onclick=()=>{const s=loadSaved()[+button.dataset.load];Object.assign(state,{trip:s.trip,focus:s.focus||Object.keys(trips[s.trip].focuses)[0],vehicle:s.vehicle,climate:s.climate,days:s.days,kids:s.kids,pets:s.pets,overnight:s.overnight});$('vehicle').value=state.vehicle;$('climate').value=state.climate;render();});
   document.querySelectorAll('[data-del]').forEach(button=>button.onclick=()=>{const data=loadSaved();data.splice(+button.dataset.del,1);localStorage.setItem('carkitcost_trips',JSON.stringify(data));renderSaved();});
 }
-$('saveTrip').onclick=()=>{const saved=loadSaved();const label=`${trips[state.trip].label} · ${state.days}d`;saved.unshift({label,trip:state.trip,focus:state.focus,vehicle:state.vehicle,budget:state.budget,climate:state.climate,days:state.days,kids:state.kids,pets:state.pets,overnight:state.overnight});localStorage.setItem('carkitcost_trips',JSON.stringify(saved.slice(0,8)));renderSaved();};
+$('saveTrip').onclick=()=>{const saved=loadSaved();const label=`${trips[state.trip].label} · ${state.days}d`;saved.unshift({label,trip:state.trip,focus:state.focus,vehicle:state.vehicle,climate:state.climate,days:state.days,kids:state.kids,pets:state.pets,overnight:state.overnight});localStorage.setItem('carkitcost_trips',JSON.stringify(saved.slice(0,8)));renderSaved();};
 (function(){const params=new URLSearchParams(location.search);const trip=params.get('trip');const vehicle=params.get('vehicle');const focus=params.get('focus');if(trip&&trips[trip])state.trip=trip;if(vehicle&&$('vehicle').querySelector(`option[value="${vehicle}"]`))state.vehicle=vehicle;if(focus&&trips[state.trip].focuses[focus])state.focus=focus;$('vehicle').value=state.vehicle;})();
 renderSaved();render();
