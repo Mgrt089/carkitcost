@@ -33,94 +33,95 @@ const trips = {
   custom:{label:'Custom trip',icon:icons.custom,desc:'Choose a goal',focuses:{organization:'Better organization',safety:'Emergency readiness',comfort:'Passenger comfort',foodpower:'Food & device power',weather:'Weather protection'}}
 };
 
-const item = (cat,name,q,p,why,price) => [cat,name,q,p,why,price];
+const item = (cat,name,q,p,why) => [cat,name,q,p,why];
 const groups = {
   core:[
-    item('Storage','Collapsible trunk organizer','collapsible car trunk organizer','essential','Keeps frequently used gear assigned to one reachable zone.',['$20–30','$30–50','$55+']),
-    item('Power','Dual USB-C fast charger','dual usb c car charger fast','essential','Keeps navigation and passenger devices powered without cable swapping.',['$13–18','$19–30','$32+']),
-    item('Comfort','Leakproof travel trash can','car trash can leakproof','upgrade','Contains wrappers and spills between planned stops.',['$8–13','$14–22','$25+'])
+    item('Storage','Collapsible trunk organizer','collapsible car trunk organizer','essential','Keeps frequently used gear assigned to one reachable zone.'),
+    item('Power','Dual USB-C fast charger','dual usb c car charger fast','essential','Keeps navigation and passenger devices powered without cable swapping.'),
+    item('Comfort','Leakproof travel trash can','car trash can leakproof','upgrade','Contains wrappers and spills between planned stops.')
   ],
-  medium:[item('Safety','12V tire inflator','portable tire inflator 12v','essential','Corrects pressure changes before they become a roadside delay.',['$25–40','$45–70','$85+'])],
+  medium:[item('Safety','12V tire inflator','portable tire inflator 12v','essential','Corrects pressure changes before they become a roadside delay.')],
   long:[
-    item('Safety','Portable jump starter','portable car jump starter','essential','Restarts the vehicle independently on longer routes.',['$40–60','$65–90','$100+']),
-    item('Safety','Compact first-aid kit','compact car first aid kit travel','essential','Handles minor injuries when the next stop is still far away.',['$15–22','$25–40','$45+'])
+    item('Safety','Portable jump starter','portable car jump starter','essential','Restarts the vehicle independently on longer routes.'),
+    item('Safety','Compact first-aid kit','compact car first aid kit travel','essential','Handles minor injuries when the next stop is still far away.')
   ],
   camping:[
-    item('Food & drink','Hard-sided cooler','hard cooler camping car','essential','Protects camp food and stays stable in the cargo area.',['$35–55','$60–100','$120+']),
-    item('Comfort','Rechargeable area lantern','rechargeable camping lantern','essential','Lights the site without draining the vehicle battery.',['$17–24','$26–36','$42+']),
-    item('Food & drink','Portable water container','camping water container spigot','upgrade','Keeps drinking and cleanup water available at camp.',['$16–25','$28–42','$50+'])
+    item('Food & drink','Hard-sided cooler','hard cooler camping car','essential','Protects camp food and stays stable in the cargo area.'),
+    item('Comfort','Rechargeable area lantern','rechargeable camping lantern','essential','Lights the site without draining the vehicle battery.'),
+    item('Food & drink','Portable water container','camping water container spigot','upgrade','Keeps drinking and cleanup water available at camp.')
   ],
   campingRemote:[
-    item('Power','Portable power station','portable power station camping','essential','Provides off-grid power when the vehicle should remain off.',['$120–180','$220–350','$450+']),
-    item('Safety','Recovery traction boards','compact traction boards off road','essential','Adds self-recovery capability on loose or muddy access roads.',['$45–70','$80–130','$160+']),
-    item('Storage','Weatherproof gear tote','weatherproof camping storage tote','upgrade','Keeps critical camp gear dry and grouped outdoors.',['$20–35','$40–65','$80+'])
+    item('Power','Portable power station','portable power station camping','essential','Provides off-grid power when the vehicle should remain off.'),
+    item('Safety','Recovery traction boards','compact traction boards off road','essential','Adds self-recovery capability on loose or muddy access roads.'),
+    item('Storage','Weatherproof gear tote','weatherproof camping storage tote','upgrade','Keeps critical camp gear dry and grouped outdoors.')
   ],
   campingVehicle:[
-    item('Overnight','Vehicle privacy shade set','car window privacy shades camping','essential','Adds privacy and blocks early light inside the vehicle.',['$22–32','$35–55','$60+']),
-    item('Overnight','Compact sleeping pad','car camping sleeping pad compact','essential','Adds insulation and comfort without consuming the cargo area.',['$30–50','$55–85','$95+'])
+    item('Overnight','Vehicle privacy shade set','car window privacy shades camping','essential','Adds privacy and blocks early light inside the vehicle.'),
+    item('Overnight','Compact sleeping pad','car camping sleeping pad compact','essential','Adds insulation and comfort without consuming the cargo area.')
   ],
   beach:[
-    item('Cleanup','Waterproof cargo liner','waterproof car trunk liner','essential','Keeps sand, salt water and wet towels out of the carpet.',['$18–30','$35–55','$60+']),
-    item('Cleanup','Dry bag / wet-gear tote','large dry bag beach wet gear','essential','Separates wet gear from the rest of the cabin.',['$15–25','$28–45','$55+']),
-    item('Cleanup','Portable rinse kit','portable shower rinse kit beach','upgrade','Removes sand before people and equipment return to the car.',['$30–45','$55–70','$78+'])
+    item('Cleanup','Waterproof cargo liner','waterproof car trunk liner','essential','Keeps sand, salt water and wet towels out of the carpet.'),
+    item('Cleanup','Dry bag / wet-gear tote','large dry bag beach wet gear','essential','Separates wet gear from the rest of the cabin.'),
+    item('Cleanup','Portable rinse kit','portable shower rinse kit beach','upgrade','Removes sand before people and equipment return to the car.')
   ],
-  beachFamily:[item('Climate','Portable beach shade','portable pop up beach shade','essential','Creates reliable shade for longer family beach days.',['$35–55','$65–100','$130+'])],
-  beachWater:[item('Storage','Waterproof phone pouch set','waterproof phone pouch beach','upgrade','Protects phones and documents around water.',['$10–16','$18–28','$35+'])],
+  beachFamily:[item('Climate','Portable beach shade','portable pop up beach shade','essential','Creates reliable shade for longer family beach days.')],
+  beachWater:[item('Storage','Waterproof phone pouch set','waterproof phone pouch beach','upgrade','Protects phones and documents around water.')],
   cross:[
-    item('Comfort','Driver lumbar support','car lumbar support pillow long drive','essential','Reduces fatigue during repeated multi-hour driving blocks.',['$17–26','$28–40','$45+']),
-    item('Safety','Reflective roadside kit','car emergency roadside kit reflector','essential','Makes an unplanned stop safer in unfamiliar conditions.',['$18–28','$30–45','$50+']),
-    item('Comfort','Dashboard phone mount','car phone mount dashboard navigation','essential','Keeps navigation visible without taking a hand off the wheel.',['$14–22','$25–40','$50+']),
-    item('Food & drink','Compact travel cooler','small car cooler road trip','upgrade','Keeps food and water available between planned stops.',['$25–40','$45–70','$90+'])
+    item('Comfort','Driver lumbar support','car lumbar support pillow long drive','essential','Reduces fatigue during repeated multi-hour driving blocks.'),
+    item('Safety','Reflective roadside kit','car emergency roadside kit reflector','essential','Makes an unplanned stop safer in unfamiliar conditions.'),
+    item('Comfort','Dashboard phone mount','car phone mount dashboard navigation','essential','Keeps navigation visible without taking a hand off the wheel.'),
+    item('Food & drink','Compact travel cooler','small car cooler road trip','upgrade','Keeps food and water available between planned stops.')
   ],
-  crossFast:[item('Power','High-output multiport charger','high output multi port car charger','essential','Keeps every essential device charged during fewer, shorter stops.',['$20–30','$35–55','$70+'])],
+  crossFast:[item('Power','High-output multiport charger','high output multi port car charger','essential','Keeps every essential device charged during fewer, shorter stops.')],
   weekend:[
-    item('Storage','Compact seat-gap organizer','car seat gap organizer','upgrade','Keeps small essentials reachable without using trunk space.',['$9–14','$16–24','$28+']),
-    item('Comfort','Windshield sunshade','car windshield sun shade','optional','Keeps the cabin comfortable during daytime stops.',['$12–18','$20–30','$40+'])
+    item('Storage','Compact seat-gap organizer','car seat gap organizer','upgrade','Keeps small essentials reachable without using trunk space.'),
+    item('Comfort','Windshield sunshade','car windshield sun shade','optional','Keeps the cabin comfortable during daytime stops.')
   ],
   kids:[
-    item('Kids','Seat-back activity organizer','car seat back organizer kids road trip','essential','Gives each child a reachable place for snacks, toys and headphones.',['$18–25','$27–38','$42+']),
-    item('Kids','Spill-resistant snack tray','kids car travel snack tray','upgrade','Contains food, drawing supplies and small toys around each seat.',['$18–28','$30–45','$55+'])
+    item('Kids','Seat-back activity organizer','car seat back organizer kids road trip','essential','Gives each child a reachable place for snacks, toys and headphones.'),
+    item('Kids','Spill-resistant snack tray','kids car travel snack tray','upgrade','Contains food, drawing supplies and small toys around each seat.')
   ],
   pets:[
-    item('Pets','Hammock seat protector','dog car seat cover hammock waterproof','essential','Protects upholstery and creates a contained pet zone.',['$22–32','$35–50','$55+']),
-    item('Pets','Travel water bowl','dog travel water bowl car','essential','Makes hydration easier without leaving an open bowl in the cabin.',['$8–14','$16–24','$30+']),
-    item('Pets','Vehicle restraint harness','dog car safety restraint harness','upgrade','Limits unsafe movement during braking and stops.',['$15–24','$28–45','$55+'])
+    item('Pets','Hammock seat protector','dog car seat cover hammock waterproof','essential','Protects upholstery and creates a contained pet zone.'),
+    item('Pets','Travel water bowl','dog travel water bowl car','essential','Makes hydration easier without leaving an open bowl in the cabin.'),
+    item('Pets','Vehicle restraint harness','dog car safety restraint harness','upgrade','Limits unsafe movement during braking and stops.')
   ],
   warm:[
-    item('Climate','Rear-window sun shades','car window sun shade kids','essential','Cuts direct sun exposure for rear passengers.',['$9–15','$18–28','$32+']),
-    item('Food & drink','Insulated bottle set','insulated water bottle set car travel','upgrade','Keeps water cold and reduces convenience stops.',['$18–28','$30–45','$55+'])
+    item('Climate','Rear-window sun shades','car window sun shade kids','essential','Cuts direct sun exposure for rear passengers.'),
+    item('Food & drink','Insulated bottle set','insulated water bottle set car travel','upgrade','Keeps water cold and reduces convenience stops.')
   ],
-  cool:[item('Climate','Packable travel blanket','packable travel blanket car','optional','Adds flexible comfort for cool mornings and unplanned stops.',['$15–22','$25–38','$45+'])],
+  cool:[item('Climate','Packable travel blanket','packable travel blanket car','optional','Adds flexible comfort for cool mornings and unplanned stops.')],
   freezing:[
-    item('Climate','Ice scraper & snow brush','ice scraper snow brush car','essential','Clears frosted windows before a cold-weather start.',['$8–14','$15–22','$25+']),
-    item('Safety','Portable traction mats','portable traction mats snow car tire','essential','Adds grip on icy or snow-covered shoulders.',['$35–55','$65–95','$120+']),
-    item('Safety','Thermal emergency blanket set','thermal emergency blanket car winter','essential','Provides backup warmth during a cold roadside delay.',['$10–16','$18–28','$35+'])
+    item('Climate','Ice scraper & snow brush','ice scraper snow brush car','essential','Clears frosted windows before a cold-weather start.'),
+    item('Safety','Portable traction mats','portable traction mats snow car tire','essential','Adds grip on icy or snow-covered shoulders.'),
+    item('Safety','Thermal emergency blanket set','thermal emergency blanket car winter','essential','Provides backup warmth during a cold roadside delay.')
   ],
   rainy:[
-    item('Cleanup','Microfiber drying towel set','microfiber car drying towel set','essential','Keeps wet gear and seats from soaking the cabin.',['$14–20','$22–30','$32+']),
-    item('Visibility','Rain-repellent windshield treatment','rain repellent windshield treatment spray','upgrade','Improves visibility during sustained wet-weather driving.',['$10–15','$16–24','$28+'])
+    item('Cleanup','Microfiber drying towel set','microfiber car drying towel set','essential','Keeps wet gear and seats from soaking the cabin.'),
+    item('Visibility','Rain-repellent windshield treatment','rain repellent windshield treatment spray','upgrade','Improves visibility during sustained wet-weather driving.')
   ],
   overnight:[
-    item('Overnight','Vehicle privacy shade set','car window privacy shades camping','essential','Adds privacy and blocks early light when sleeping in the vehicle.',['$22–32','$35–55','$60+']),
-    item('Overnight','Compact sleeping pad','car camping sleeping pad compact','essential','Adds insulation and comfort without consuming the cargo area.',['$30–50','$55–85','$95+'])
+    item('Overnight','Vehicle privacy shade set','car window privacy shades camping','essential','Adds privacy and blocks early light when sleeping in the vehicle.'),
+    item('Overnight','Compact sleeping pad','car camping sleeping pad compact','essential','Adds insulation and comfort without consuming the cargo area.')
   ],
-  compact:[item('Storage','Slim roof cargo bag','waterproof car roof cargo bag compact','optional','Adds overflow capacity without permanently using cabin space.',['$45–65','$70–110','$130+'])],
-  sedan:[item('Storage','Trunk cargo net','sedan trunk cargo net organizer','upgrade','Keeps soft bags and groceries from sliding across a wide trunk.',['$15–24','$28–42','$50+'])],
-  suv:[item('Storage','Adjustable cargo divider','suv cargo divider organizer','upgrade','Creates stable zones in a large cargo area.',['$25–40','$45–70','$85+'])],
+  compact:[item('Storage','Slim roof cargo bag','waterproof car roof cargo bag compact','optional','Adds overflow capacity without permanently using cabin space.')],
+  sedan:[item('Storage','Trunk cargo net','sedan trunk cargo net organizer','upgrade','Keeps soft bags and groceries from sliding across a wide trunk.')],
+  suv:[item('Storage','Adjustable cargo divider','suv cargo divider organizer','upgrade','Creates stable zones in a large cargo area.')],
   truck:[
-    item('Storage','Weatherproof truck-bed box','weatherproof truck bed storage box','essential','Protects trip gear from rain, dust and open-bed exposure.',['$55–90','$110–180','$240+']),
-    item('Storage','Truck-bed cargo net','truck bed cargo net tie down','essential','Prevents loose items shifting or leaving the bed.',['$20–35','$40–65','$80+'])
+    item('Storage','Weatherproof truck-bed box','weatherproof truck bed storage box','essential','Protects trip gear from rain, dust and open-bed exposure.'),
+    item('Storage','Truck-bed cargo net','truck bed cargo net tie down','essential','Prevents loose items shifting or leaving the bed.')
   ],
-  minivan:[item('Power','Rear-cabin multiport charger','multi port car charger rear seat minivan','upgrade','Supports several passenger devices without cable swapping.',['$18–28','$32–48','$60+'])],
-  organization:[item('Storage','Seat-back organizer','car seat back organizer storage','essential','Moves small essentials off seats and floors.',['$15–24','$28–42','$50+'])],
-  safety:[item('Safety','Reflective roadside kit','car emergency roadside kit reflector','essential','Makes an unplanned roadside stop more visible and manageable.',['$18–28','$30–45','$50+'])],
-  comfort:[item('Comfort','Driver lumbar support','car lumbar support pillow long drive','essential','Reduces discomfort during extended seat time.',['$17–26','$28–40','$45+'])],
-  foodpower:[item('Food & drink','Compact travel cooler','small car cooler road trip','essential','Keeps food and drinks available between stops.',['$25–40','$45–70','$90+'])],
-  weather:[item('Climate','All-weather cargo liner','all weather car cargo liner','essential','Contains water, mud and weather-exposed gear.',['$25–40','$45–70','$85+'])]
+  minivan:[item('Power','Rear-cabin multiport charger','multi port car charger rear seat minivan','upgrade','Supports several passenger devices without cable swapping.')],
+  organization:[item('Storage','Seat-back organizer','car seat back organizer storage','essential','Moves small essentials off seats and floors.')],
+  safety:[item('Safety','Reflective roadside kit','car emergency roadside kit reflector','essential','Makes an unplanned roadside stop more visible and manageable.')],
+  comfort:[item('Comfort','Driver lumbar support','car lumbar support pillow long drive','essential','Reduces discomfort during extended seat time.')],
+  foodpower:[item('Food & drink','Compact travel cooler','small car cooler road trip','essential','Keeps food and drinks available between stops.')],
+  weather:[item('Climate','All-weather cargo liner','all weather car cargo liner','essential','Contains water, mud and weather-exposed gear.')]
 };
 
 const state = {trip:'camping',focus:'established',vehicle:'suv',budget:'balanced',climate:'warm',days:5,kids:true,pets:false,overnight:false,cat:'All',view:'all',owned:new Set()};
 const $ = id => document.getElementById(id);
+const tierWord = {budget:'budget',balanced:'',premium:'premium'};
 const amazon = q => `https://www.amazon.com/s?k=${encodeURIComponent(q)}&tag=${AFFILIATE_TAG}`;
 const add = (target, group) => { if (groups[group]) target.push(...groups[group]); };
 
@@ -152,7 +153,7 @@ function selectedItems(){
   add(result,state.climate);
   add(result,state.vehicle);
   const seen=new Set();
-  return result.filter(x=>!seen.has(x[1])&&seen.add(x[1])).map((x,i)=>({cat:x[0],name:x[1],q:x[2],p:x[3],why:x[4],price:x[5],id:`${x[0]}-${x[1]}`}));
+  return result.filter(x=>!seen.has(x[1])&&seen.add(x[1])).map((x,i)=>({cat:x[0],name:x[1],q:x[2],p:x[3],why:x[4],id:`${x[0]}-${x[1]}`}));
 }
 
 function renderFocus(){
@@ -195,13 +196,10 @@ function render(){
   $('meta').textContent=`${$('vehicle').selectedOptions[0].text} · ${state.days} ${state.days===1?'day':'days'} · ${trips[state.trip].label.toLowerCase()} · ${trips[state.trip].focuses[state.focus].toLowerCase()}${flags.length?' · '+flags.join(' · '):''}`;
   const unowned=all.filter(x=>!state.owned.has(x.id));
   $('needCount').textContent=unowned.length;$('mobileNeedCount').textContent=unowned.length;
-  const tier={budget:0,balanced:1,premium:2}[state.budget];
-  const midpoint=value=>{const nums=value.replace(/[$,]/g,'').match(/\d+/g).map(Number);return nums.length>1?(nums[0]+nums[1])/2:nums[0];};
-  $('needCost').textContent=`~$${Math.round(unowned.reduce((sum,x)=>sum+midpoint(x.price[tier]),0))}`;$('mobileNeedCost').textContent=$('needCost').textContent;
   $('diagnosis').textContent=diagnosis();
   $('tabs').innerHTML=cats.map(cat=>`<button class="tab ${state.cat===cat?'active':''}" data-cat="${cat}">${cat}</button>`).join('');
   document.querySelectorAll('[data-cat]').forEach(button=>button.onclick=()=>{state.cat=button.dataset.cat;render();});
-  $('list').innerHTML=visible.length?visible.map(x=>`<article class="item ${state.owned.has(x.id)?'owned':''}" data-category="${x.cat}"><button class="own ${state.owned.has(x.id)?'owned':''}" data-own="${x.id}" aria-label="Mark ${x.name} as owned" aria-pressed="${state.owned.has(x.id)}"></button><span class="item-icon">${catIcon[x.cat]||icons.custom}</span><div class="item-copy"><div class="item-top"><span class="item-name">${x.name}</span><span class="priority ${x.p}">${x.p==='upgrade'?'Useful upgrade':x.p}</span></div><div class="why"><b>Why it fits:</b> ${x.why}</div></div><div class="actions"><span class="price"><b>${x.price[tier]}</b><small>${state.budget}</small></span><a class="shop" href="${amazon(`${x.q} ${state.vehicle}`)}" target="_blank" rel="nofollow sponsored noopener" aria-label="View Amazon picks for ${x.name}">View picks <span aria-hidden="true">↗</span></a></div></article>`).join(''):'<div class="empty">Everything here is already covered. You’re road-ready.</div>';
+  $('list').innerHTML=visible.length?visible.map(x=>`<article class="item ${state.owned.has(x.id)?'owned':''}" data-category="${x.cat}"><button class="own ${state.owned.has(x.id)?'owned':''}" data-own="${x.id}" aria-label="Mark ${x.name} as owned" aria-pressed="${state.owned.has(x.id)}"></button><span class="item-icon">${catIcon[x.cat]||icons.custom}</span><div class="item-copy"><div class="item-top"><span class="item-name">${x.name}</span><span class="priority ${x.p}">${x.p==='upgrade'?'Useful upgrade':x.p}</span></div><div class="why"><b>Why it fits:</b> ${x.why}</div></div><div class="actions"><a class="shop" href="${amazon(`${x.q} ${state.vehicle} ${tierWord[state.budget]}`.trim())}" target="_blank" rel="nofollow sponsored noopener" aria-label="View ${x.name} on Amazon">View on Amazon <span aria-hidden="true">↗</span></a></div></article>`).join(''):'<div class="empty">Everything here is already covered. You’re road-ready.</div>';
   document.querySelectorAll('[data-own]').forEach(button=>button.onclick=()=>{state.owned.has(button.dataset.own)?state.owned.delete(button.dataset.own):state.owned.add(button.dataset.own);render();});
   document.querySelectorAll('[data-view]').forEach(button=>button.classList.toggle('active',button.dataset.view===state.view));
   document.querySelectorAll('[data-toggle]').forEach(button=>{const on=state[button.dataset.toggle];button.classList.toggle('on',on);button.setAttribute('aria-pressed',on);});
