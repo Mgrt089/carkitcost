@@ -111,7 +111,7 @@ const groups = {
     item('Storage','Weatherproof truck-bed box','weatherproof truck bed storage box','essential','Protects trip gear from rain, dust and open-bed exposure.'),
     item('Storage','Truck-bed cargo net','truck bed cargo net tie down','essential','Prevents loose items shifting or leaving the bed.')
   ],
-  minivan:[item('Power','Rear-cabin multiport charger','multi port car charger rear seat minivan','upgrade','Supports several passenger devices without cable swapping.')],
+  minivan:[item('Power','Rear-cabin multiport charger','car charger multi port 4 port usb','upgrade','Supports several passenger devices without cable swapping.')],
   organization:[item('Storage','Seat-back organizer','car seat back organizer storage','essential','Moves small essentials off seats and floors.')],
   safety:[item('Safety','Reflective roadside kit','car emergency roadside kit reflector','essential','Makes an unplanned roadside stop more visible and manageable.')],
   comfort:[item('Comfort','Driver lumbar support','car lumbar support pillow long drive','essential','Reduces discomfort during extended seat time.')],
@@ -121,6 +121,7 @@ const groups = {
 
 const state = {trip:'camping',focus:'established',vehicle:'suv',climate:'warm',days:5,kids:true,pets:false,overnight:false,cat:'All',view:'all',owned:new Set()};
 const $ = id => document.getElementById(id);
+const searchTerm = (q,vehicle) => q.split(' ').includes(vehicle) ? q : `${q} ${vehicle}`;
 const amazon = q => `https://www.amazon.com/s?k=${encodeURIComponent(q)}&tag=${AFFILIATE_TAG}`;
 const add = (target, group) => { if (groups[group]) target.push(...groups[group]); };
 
@@ -198,7 +199,7 @@ function render(){
   $('diagnosis').textContent=diagnosis();
   $('tabs').innerHTML=cats.map(cat=>`<button class="tab ${state.cat===cat?'active':''}" data-cat="${cat}">${cat}</button>`).join('');
   document.querySelectorAll('[data-cat]').forEach(button=>button.onclick=()=>{state.cat=button.dataset.cat;render();});
-  $('list').innerHTML=visible.length?visible.map(x=>`<article class="item ${state.owned.has(x.id)?'owned':''}" data-category="${x.cat}"><button class="own ${state.owned.has(x.id)?'owned':''}" data-own="${x.id}" aria-label="Mark ${x.name} as owned" aria-pressed="${state.owned.has(x.id)}"></button><span class="item-icon">${catIcon[x.cat]||icons.custom}</span><div class="item-copy"><div class="item-top"><span class="item-name">${x.name}</span><span class="priority ${x.p}">${x.p==='upgrade'?'Useful upgrade':x.p}</span></div><div class="why"><b>Why it fits:</b> ${x.why}</div></div><div class="actions"><a class="shop" href="${amazon(`${x.q} ${state.vehicle}`)}" target="_blank" rel="nofollow sponsored noopener" aria-label="View ${x.name} on Amazon">View on Amazon <span aria-hidden="true">↗</span></a></div></article>`).join(''):'<div class="empty">Everything here is already covered. You’re road-ready.</div>';
+  $('list').innerHTML=visible.length?visible.map(x=>`<article class="item ${state.owned.has(x.id)?'owned':''}" data-category="${x.cat}"><button class="own ${state.owned.has(x.id)?'owned':''}" data-own="${x.id}" aria-label="Mark ${x.name} as owned" aria-pressed="${state.owned.has(x.id)}"></button><span class="item-icon">${catIcon[x.cat]||icons.custom}</span><div class="item-copy"><div class="item-top"><span class="item-name">${x.name}</span><span class="priority ${x.p}">${x.p==='upgrade'?'Useful upgrade':x.p}</span></div><div class="why"><b>Why it fits:</b> ${x.why}</div></div><div class="actions"><a class="shop" href="${amazon(searchTerm(x.q,state.vehicle))}" target="_blank" rel="nofollow sponsored noopener" aria-label="View ${x.name} on Amazon">View on Amazon <span aria-hidden="true">↗</span></a></div></article>`).join(''):'<div class="empty">Everything here is already covered. You’re road-ready.</div>';
   document.querySelectorAll('[data-own]').forEach(button=>button.onclick=()=>{state.owned.has(button.dataset.own)?state.owned.delete(button.dataset.own):state.owned.add(button.dataset.own);render();});
   document.querySelectorAll('[data-view]').forEach(button=>button.classList.toggle('active',button.dataset.view===state.view));
   document.querySelectorAll('[data-toggle]').forEach(button=>{const on=state[button.dataset.toggle];button.classList.toggle('on',on);button.setAttribute('aria-pressed',on);});
