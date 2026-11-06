@@ -1,7 +1,3 @@
-const diagnosisStyles = document.createElement('link');
-diagnosisStyles.rel = 'stylesheet';
-diagnosisStyles.href = 'diagnosis-polish.css';
-document.head.appendChild(diagnosisStyles);
 document.querySelector('.diagnosis b').textContent = 'WHY THIS FITS';
 
 const AFFILIATE_TAG = 'carkitcost-20';
@@ -218,7 +214,7 @@ $('mobileTop').onclick=()=>document.querySelector('.planner').scrollIntoView({be
 function loadSaved(){try{return JSON.parse(localStorage.getItem('carkitcost_trips')||'[]');}catch{return[];}}
 function renderSaved(){
   const saved=loadSaved();
-  $('savedTrips').innerHTML=saved.length?saved.map((s,i)=>`<span style="display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.24);border-radius:99px;padding:6px 6px 6px 12px;font-size:11px;color:#26312e"><button data-load="${i}" style="background:none;border:0;color:#173f35;font:700 11px 'DM Sans';cursor:pointer;padding:0">${s.label}</button><button data-del="${i}" aria-label="Delete" style="background:none;border:0;color:#68736e;cursor:pointer;padding:0 4px">×</button></span>`).join(''):'<span style="font-size:11px;color:#68736e">No saved trips yet.</span>';
+  $('savedTrips').innerHTML=saved.length?saved.map((s,i)=>`<span style="display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.24);border-radius:99px;padding:6px 6px 6px 12px;font-size:11px;color:#26312e"><button data-load="${i}" style="background:none;border:0;color:#173f35;font:700 11px 'DM Sans';cursor:pointer;padding:0">${s.label}</button><button data-del="${i}" aria-label="Delete" style="background:none;border:0;color:#2f3b37;cursor:pointer;padding:0 4px">×</button></span>`).join(''):'<span style="font-size:11px;color:#2f3b37">No saved trips yet.</span>';
   document.querySelectorAll('[data-load]').forEach(button=>button.onclick=()=>{const s=loadSaved()[+button.dataset.load];Object.assign(state,{trip:s.trip,focus:s.focus||Object.keys(trips[s.trip].focuses)[0],vehicle:s.vehicle,climate:s.climate,days:s.days,kids:s.kids,pets:s.pets,overnight:s.overnight});$('vehicle').value=state.vehicle;$('climate').value=state.climate;render();});
   document.querySelectorAll('[data-del]').forEach(button=>button.onclick=()=>{const data=loadSaved();data.splice(+button.dataset.del,1);localStorage.setItem('carkitcost_trips',JSON.stringify(data));renderSaved();});
 }
